@@ -467,8 +467,14 @@
  		       {"photo_id": [[x1,y1,x2,y2,...], [x1,y1,x2,y2,...]]}
  		   otherwise, photo_id is not used.
  		*/
-		window.template_args = {
-			photo_url: 'http://farm9.staticflickr.com/8204/8177262167_d749ec58d9_h.jpg',
+                var query =  window.location.search.substring(1);
+		/*var my_photo_url = query.split("photourl=")[1].split("&")[0];*/
+		var my_photo_url = query.split("photourl=")[1].split("&")[0];
+                
+                window.template_args = {
+			/* photo_url: 'http://farm9.staticflickr.com/8204/8177262167_d749ec58d9_h.jpg',
+			*/
+			photo_url: 'http://farm9.staticflickr.com/ID/8398305616_5d8beeb359.jpg'.replace("ID", my_photo_url),
 			photo_id: 1,
 		};
 
