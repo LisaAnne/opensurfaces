@@ -20,6 +20,11 @@
 			<button type="button" id='btn-submit' class="btn btn-primary" disabled="disabled">Submit</button>
 		</span>
 	</div>
+        <div id="mt-query">
+                <span>
+                  Question: {{ question }} Answer: {{ answer }}
+                </span>
+        </div>
 
 	{% include "poly/poly_controls.html" %}
 </div>
@@ -41,7 +46,7 @@
 <script type="text/javascript">
 window.template_args = {
 	photo_url: '{{ content.url }}',
-	photo_id: {{ content.id }},
+	photo_id: '{{ content.id }}',
 };
 {% if min_shapes %}window.min_shapes = {{ min_shapes }};{% endif %}
 {% if min_vertices %}window.min_vertices = {{ min_vertices }};{% endif %}

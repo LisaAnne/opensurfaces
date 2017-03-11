@@ -46,11 +46,8 @@ def demo(request):
     """
     # replace this with a fetch from your database
     if request.method == 'POST':
-        # this will return the POST data back to the client in the form of an
-        # error message (so you can inspect it).
-        return json_error_response(
-            "This is a demo.  Here is the data you submitted: " +
-            json.dumps(request.POST))
+        with open('results.txt', 'a') as f:
+            f.write(json.dumps(request.POST) + '\n')
 
         # to instead signal that the data was properly submitted, return a JSON
         # object indicating success (see below commented line).  The client
@@ -58,12 +55,17 @@ def demo(request):
         # See segmentation/static/jss/mturk/mt_submit.coffee (search for
         # window.location) for the code that does this on the client side.
 
-        #return json_success_response()
+        return json_success_response()
     else:
         response = browser_check(request)
         if response:
             return response
 
+
+        photo_param = request.GET.get('photourl', '8204$8398305616_5d8beeb359')
+        url = 'https://farm9.staticflickr.com/{}.jpg'.format(photo_param.replace('$', '/'))
+        print(photo_param)
+        print(url)
         # hard-coded example image:
         context = {
             # the current task
@@ -71,27 +73,31 @@ def demo(request):
                 # the database ID of the photo.  You can leave this at 1 if you
                 # don't use a database.  When the results are submitted, the
                 # content.id is the key in a dictionary holding the polygons.
-                'id': 1,
+                'id': photo_param,
                 # url where the photo can be fetched.
-                'url': 'http://farm9.staticflickr.com/8204/8177262167_d749ec58d9_h.jpg'
+                'url': url,
             },
 
             # min number of shapes before the user can submit
-            'min_shapes': 6,
+            'min_shapes': 0,
 
             # min number of vertices the user must click for each shape
             'min_vertices': 4,
 
             # if 'true', ask the user a feedback survey at the end and promise
             # payment to complete it.  Must be 'true' or 'false'.
-            'ask_for_feedback': 'true',
+            'ask_for_feedback': 'false',
 
             # feedback_bonus is the payment in dollars that we promise users
             # for completing feedback
             'feedback_bonus': 0.02,
 
             # template containing html for instructions
-            'instructions': 'mturk/mt_segment_material_inst_content.html'
+            'instructions': 'mturk/mt_segment_material_inst_content.html',
+
+            'question': request.GET.get('question', 'no question specified').replace('_', ' '),
+            'answer': request.GET.get('answer', 'no answer specified')
+
         }
 
     return render(request, 'mturk/mt_segment_material.html', context)

@@ -39,6 +39,11 @@ iframe { border: 1px solid #969696; }
 	margin: 0px;
 	margin-top: -5px;
 }
+#mt-query {
+        background-color: #d4e1f7;
+        padding: 8px;
+        margin: 0px;
+}
 #mt-num-shapes {
 	text-decoration: underline;
 }
