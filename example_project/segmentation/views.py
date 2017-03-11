@@ -69,7 +69,8 @@ def demo(request):
 
 
         photo_param = request.GET.get('photourl', '8204$8398305616_5d8beeb359')
-        url = 'https://farm9.staticflickr.com/{}.jpg'.format(photo_param.replace('$', '/'))
+
+        #url = 'https://farm9.staticflickr.com/{}.jpg'.format(photo_param.replace('$', '/'))
         # hard-coded example image:
         context = {
             # the current task
@@ -79,11 +80,11 @@ def demo(request):
                 # content.id is the key in a dictionary holding the polygons.
                 'id': photo_param,
                 # url where the photo can be fetched.
-                'url': url,
+                'url': request.GET.get('url', 'no url specified'),
             },
 
             # min number of shapes before the user can submit
-            'min_shapes': 0,
+            'min_shapes': 1,
 
             # min number of vertices the user must click for each shape
             'min_vertices': 4,
@@ -99,8 +100,7 @@ def demo(request):
             # template containing html for instructions
             'instructions': 'mturk/mt_segment_material_inst_content.html',
 
-            'question': request.GET.get('question', 'no question specified').replace('_', ' '),
-            'answer': request.GET.get('answer', 'no answer specified')
+            'task': request.GET.get('task', 'no task specified'),
 
         }
 
