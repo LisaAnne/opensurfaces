@@ -70,8 +70,6 @@ def demo(request):
 
         photo_param = request.GET.get('photourl', '8204$8398305616_5d8beeb359')
         url = 'https://farm9.staticflickr.com/{}.jpg'.format(photo_param.replace('$', '/'))
-        print(photo_param)
-        print(url)
         # hard-coded example image:
         context = {
             # the current task
