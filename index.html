@@ -78,26 +78,31 @@
 		<div class="modal-body">
 			<div class="container-fluid">
 
-				<h2>What to draw</h2> <p>Please draw shapes around regions that have a
+				<h2>What to draw</h2>
                                 <p>
-				We provide an image and the answer to&nbsp;what <strong><span style="color:#0000FF;">activity</span></strong> the image corresponds to.
-				Please locate the <strong>visual evidence</strong>&nbsp;that justifies&nbsp;the answer of&nbsp;the given&nbsp;image.
+				We provide an image and the answer to&nbsp;what 
+                                <strong><span style="color:#0000FF;">activity</span></strong> 
+                                the image corresponds to.
+				Please locate the <strong>visual evidence</strong>&nbsp;that 
+                                justifies&nbsp;the answer of&nbsp;the given&nbsp;image.
 				</p>
 
 				<p>
-				Identify the objects / regions that <strong> <span style="color:#FF0000;">most prominently</span></strong>
+				Identify the objects / regions that 
+                                <strong> <span style="color:#FF0000;">most prominently</span></strong>
 				justify the <strong><span style="color:#0000FF;">activity</span></strong>.
 				Please make the region as tight as possible.
 				Use the &quot;adjust&quot; button (or press 'A') to improve the shape boundary.
 				</p>
 
 				<p>
-				Even if you don't agree with the answer, try to locate the visual evidence based on the given answer.
+				Even if you don't agree with the answer, 
+                                try to locate the visual evidence based on the given answer.
 				</p>
 
 				<p>
-				If you believe something like a brick wall or tiled floor is the evidence, please include all
-				the tiles; do not draw a square around one tile.
+				If you believe something like a brick wall or tiled floor is the evidence, 
+                                please include all the tiles; do not draw a square around one tile.
 				</p>
 
 				<p>
@@ -105,42 +110,16 @@
 				person, their skin and clothing should not be in two different shapes.
 				</p>
 
-				<p>Draw {{ min_shapes|apnumber }} polygon{{ min_shapes|pluralize }} to complete
-				the task.</p>
-
-				<br/>
-				<i>single</i> material or texture.  Some example materials: wood, steel,
-				bricks, tiles, ceramic, plastic.  If you don't know what to draw, floors,
-				walls, and countertops are usually one material -- just be careful to exclude
-				things on top.</p>
-
-				<p>Please make the region as tight as possible.  <b>Your shape should exactly
-					follow the material boundary.</b>  Use the &quot;adjust&quot; button (or
-				press 'A') to improve the shape boundary.</p>
-
-				<p>If there is something like a brick wall or tiled floor, please include all
-				the tiles; do not draw a square around one tile.  Large regions are
-				preferable.</p>
-
-				<p>Example: if a wood cabinet has a metal handle, then the metal portion is a
-				different material and should be excluded.  If you are drawing a shape around a
-				person, their skin and clothing should not be in two different shapes.  You can
-				also exclude regions by overlapping shapes.  See the below examples.</p>
-
-				<p>Draw six polygons to complete
-				the task.</p>
+				<p>
+                                Draw {{ min_shapes|apnumber }} polygon{{ min_shapes|pluralize }} to complete
+				the task.
+                                </p>
 
 				<br/>
 
 				<h2>Good examples</h2>
 
 				<div class="row-fluid">
-					<div class="span4">
-						<div class="thumbnail">
-							<img src="/static/img/good5.jpg"  alt="" />
-							<p class="caption">Large flat regions are preferable, though not necessary.</p>
-						</div>
-					</div>
 					<div class="span4">
 						<div class="thumbnail">
 							<img src="/static/img/good4.jpg"  alt="" />
@@ -150,12 +129,6 @@
 
 				</div>
 				<div class="row-fluid">
-					<div class="span4">
-						<div class="thumbnail">
-							<img src="/static/img/good12.jpg"  alt="" />
-							<p class="caption">Be careful to not include items of a different material.</p>
-						</div>
-					</div>
 					<div class="span4">
 						<div class="thumbnail">
 							<img src="/static/img/good11.jpg"  alt="" />
@@ -177,13 +150,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="thumbnail">
-							<img src="/static/img/segment_material_good1.jpg"  alt="" />
-						</div>
-					</div>
-				</div>
 
 				<br/>
 
@@ -201,55 +167,6 @@
 						<div class="thumbnail">
 							<img src="/static/img/segment_material_bad2.jpg"  alt="" />
 							<p class="caption">Please do not do this.</p>
-						</div>
-					</div>
-				</div>
-				<div class="row-fluid">
-					<div class="span6">
-						<div class="thumbnail">
-							<img src="/static/img/segment_material_bad3.jpg"  alt="" />
-							<p class="caption">Please make the regions bigger than this.</p>
-						</div>
-					</div>
-					<div class="span6">
-						<div class="thumbnail">
-							<img src="/static/img/segment_material_bad4.jpg"  alt="" />
-							<p class="caption">These shapes contain multiple materials and are nowhere near the correct boundaries.</p>
-						</div>
-					</div>
-				</div>
-				<div class="row-fluid">
-					<div class="span4">
-						<div class="thumbnail">
-							<img src="/static/img/bad1.jpg"  alt="" />
-							<p class="caption">This shape includes more than one type of material.</p>
-						</div>
-						<br/>
-						<div class="thumbnail">
-							<img src="/static/img/bad4.jpg"  alt="" />
-							<p class="caption">This includes other objects; the other objects should have shapes around them.</p>
-						</div>
-					</div>
-					<div class="span4">
-						<div class="thumbnail">
-							<img src="/static/img/bad6.jpg"  alt="" />
-							<p class="caption">This includes the edges of other objects.</p>
-						</div>
-						<br/>
-						<div class="thumbnail">
-							<img src="/static/img/bad3.jpg"  alt="" />
-							<p class="caption">This shape is too sloppy.</p>
-						</div>
-					</div>
-					<div class="span4">
-						<div class="thumbnail">
-							<img src="/static/img/bad5.jpg"  alt="" />
-							<p class="caption">This contains more than one type of material.</p>
-						</div>
-						<br/>
-						<div class="thumbnail">
-							<img src="/static/img/bad2.jpg"  alt="" />
-							<p class="caption">This contains many substances.</p>
 						</div>
 					</div>
 				</div>
