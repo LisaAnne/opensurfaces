@@ -1,4 +1,5 @@
 import json
+import os
 
 from ua_parser import user_agent_parser
 
@@ -46,8 +47,13 @@ def demo(request):
     """
     # replace this with a fetch from your database
     if request.method == 'POST':
-        with open('results.txt', 'a') as f:
-            f.write(json.dumps(request.POST) + '\n')
+        if not os.path.exists('results'):
+            os.mkdir('results')
+        results_path = os.path.join('results', '{}_{}.json'.format(request.GET['hitId'], request.GET['assignmentId']))
+        data = dict(request.GET)
+        data['results'] = dict(request.POST)
+        with open(results_path, 'a') as f:
+            f.write(json.dumps(data) + '\n')
 
         # to instead signal that the data was properly submitted, return a JSON
         # object indicating success (see below commented line).  The client
