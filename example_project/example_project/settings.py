@@ -2,8 +2,9 @@ import os.path
 
 # Django settings for example_project project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
+ALLOWED_HOSTS = ['amtexplanation.berkeleyvision.org']
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
