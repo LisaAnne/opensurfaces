@@ -1,38 +1,53 @@
 {% load humanize %}
 
-<h2>What to draw</h2> <p>Please draw shapes around regions that have a
-<i>single</i> material or texture.  Some example materials: wood, steel,
-bricks, tiles, ceramic, plastic.  If you don't know what to draw, floors,
-walls, and countertops are usually one material -- just be careful to exclude
-things on top.</p>
+<h2>What to draw</h2> 
 
-<p>Please make the region as tight as possible.  <b>Your shape should exactly
-follow the material boundary.</b>  Use the &quot;adjust&quot; button (or
-press 'A') to improve the shape boundary.</p>
+<p>
+We provide an image and the answer to&nbsp;what
+<strong><span style="color:#0000FF;">activity</span></strong>
+the image corresponds to.
+</p>
 
-<p>If there is something like a brick wall or tiled floor, please include all
-the tiles; do not draw a square around one tile.  Large regions are
-preferable.</p>
+<p>
+Please locate the <strong>visual evidence</strong>&nbsp;that
+justifies&nbsp;the answer of&nbsp;the given&nbsp;image.
+</p>
 
-<p>Example: if a wood cabinet has a metal handle, then the metal portion is a
-different material and should be excluded.  If you are drawing a shape around a
-person, their skin and clothing should not be in two different shapes.  You can
-also exclude regions by overlapping shapes.  See the below examples.</p>
+<p>
+Identify the objects / regions that
+<strong> <span style="color:#FF0000;">most prominently</span></strong>
+justify the <strong><span style="color:#0000FF;">activity</span></strong>.
+</p>
 
-<p>Draw {{ min_shapes|apnumber }} polygon{{ min_shapes|pluralize }} to complete
-the task.</p>
+<p>
+Please make the region as tight as possible.
+Use the &quot;adjust&quot; button (or press 'A') to improve the shape boundary.
+</p>
+
+<p>
+Even if you don't agree with the answer,
+try to locate the visual evidence based on the given answer.
+</p>
+
+<p>
+If you believe something like a brick wall or tiled floor is the evidence,
+please include all the tiles; do not draw a square around one tile.
+</p>
+
+<p>
+If you are drawing a shape around a
+person, their skin and clothing should not be in two different shapes.
+</p>
+
+<p>
+Draw <strong>at least 1 polygon</strong> to complete the task.
+</p>
 
 <br/>
 
 <h2>Good examples</h2>
 
 <div class="row-fluid">
-	<div class="span4">
-		<div class="thumbnail">
-			<img src="{{ STATIC_URL }}img/good5.jpg"  alt="" />
-			<p class="caption">Large flat regions are preferable, though not necessary.</p>
-		</div>
-	</div>
 	<div class="span4">
 		<div class="thumbnail">
 			<img src="{{ STATIC_URL }}img/good4.jpg"  alt="" />
@@ -48,6 +63,7 @@ the task.</p>
 	</div>
 	{% endcomment %}
 </div>
+{% comment %}
 <div class="row-fluid">
 	<div class="span4">
 		<div class="thumbnail">
@@ -68,6 +84,9 @@ the task.</p>
 		</div>
 	</div>
 </div>
+{% endcomment %}
+
+{% comment %}
 <div class="row-fluid">
 	<div class="span12">
 		<div class="thumbnail">
@@ -83,6 +102,7 @@ the task.</p>
 		</div>
 	</div>
 </div>
+{% endcomment %}
 
 <br/>
 
@@ -103,6 +123,8 @@ the task.</p>
 		</div>
 	</div>
 </div>
+
+{% comment %}
 <div class="row-fluid">
 	<div class="span6">
 		<div class="thumbnail">
@@ -152,6 +174,7 @@ the task.</p>
 		</div>
 	</div>
 </div>
+{% endcomment %}
 <br/>
 
 <h2>How to draw</h2>
@@ -229,7 +252,5 @@ things that you can see in the reflection.  Similarly, draw a shape around the
 window glass, and not the things you can see through the window.</p>
 
 <br/>
-<h2>Why are we doing this?</h2>
-<p>We are building a database of materials from images on the web.  This is part of ongoing research at Cornell University.</p>
 <p>Thank you for participating!</p>
 <br/>
