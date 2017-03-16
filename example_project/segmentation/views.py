@@ -146,9 +146,9 @@ def vqa(request):
     """
     # replace this with a fetch from your database
     if request.method == 'POST':
-        if not os.path.exists('results'):
-            os.mkdir('results')
-        results_path = os.path.join('results', '{}_{}.json'.format(request.GET['hitId'], request.GET['assignmentId']))
+        if not os.path.exists('results_vqa'):
+            os.mkdir('results_vqa')
+        results_path = os.path.join('results_vqa', '{}_{}.json'.format(request.GET['hitId'], request.GET['assignmentId']))
         data = dict(request.GET)
         data['results'] = dict(request.POST)
         with open(results_path, 'a') as f:
