@@ -106,6 +106,106 @@ def demo(request):
 
     return render(request, 'mturk/mt_segment_material.html', context)
 
+@ensure_csrf_cookie
+def vqa(request):
+    """
+    Serve up a segmentation task.
+
+    This is a demo, so we are going to hard-code an image to tag.
+    In a live system, you would read the HIT id:
+        hit_id = request.REQUEST['hitId']
+        assignment_id = request.REQUEST['assignmentId']
+    and fetch a photo from the database.
+
+    When a user submits, the data will be in request.body.
+    request.body will contain these extra fields corresponding
+    to data sent by the task window:
+
+        results: a dictionary mapping from the content.id (which is just "1" in
+            this example) to a list of polygons.  Example:
+            {"1": [[x1,y1,x2,y2,x3,y3,...], [x1,y1,x2,y2,...]]}.
+            The x and y coordinates are fractions of the width and height
+            respectively.
+        time_ms: amount of time the user spent (whether or not
+            they were active)
+        time_active_ms: amount of time that the user was
+            active in the current window
+        action_log: a JSON-encoded log of user actions
+        screen_width: user screen width
+        screen_height: user screen height
+        version: always "1.0"
+
+        If the user gives feedback, there will also be this:
+        feedback: JSON encoded dictionary of the form:
+        {
+            'thoughts': user's response to "What did you think of this task?",
+            'understand': user's response to "What parts didn't you understand?",
+            'other': user's response to "Any other feedback, improvements, or suggestions?"
+        }
+
+    """
+    # replace this with a fetch from your database
+    if request.method == 'POST':
+        if not os.path.exists('results'):
+            os.mkdir('results')
+        results_path = os.path.join('results', '{}_{}.json'.format(request.GET['hitId'], request.GET['assignmentId']))
+        data = dict(request.GET)
+        data['results'] = dict(request.POST)
+        with open(results_path, 'a') as f:
+            f.write(json.dumps(data) + '\n')
+
+        # to instead signal that the data was properly submitted, return a JSON
+        # object indicating success (see below commented line).  The client
+        # will then tell the MTURK server that the task was completed.
+        # See segmentation/static/jss/mturk/mt_submit.coffee (search for
+        # window.location) for the code that does this on the client side.
+
+        return json_success_response()
+    else:
+        response = browser_check(request)
+        if response:
+            return response
+
+
+        photo_param = request.GET.get('photourl', '8204$8398305616_5d8beeb359')
+
+        #url = 'https://farm9.staticflickr.com/{}.jpg'.format(photo_param.replace('$', '/'))
+        # hard-coded example image:
+        context = {
+            # the current task
+            'content': {
+                # the database ID of the photo.  You can leave this at 1 if you
+                # don't use a database.  When the results are submitted, the
+                # content.id is the key in a dictionary holding the polygons.
+                'id': photo_param,
+                # url where the photo can be fetched.
+                'url': request.GET.get('url', 'no url specified'),
+            },
+
+            # min number of shapes before the user can submit
+            'min_shapes': 1,
+
+            # min number of vertices the user must click for each shape
+            'min_vertices': 4,
+
+            # if 'true', ask the user a feedback survey at the end and promise
+            # payment to complete it.  Must be 'true' or 'false'.
+            'ask_for_feedback': 'false',
+
+            # feedback_bonus is the payment in dollars that we promise users
+            # for completing feedback
+            'feedback_bonus': 0.02,
+
+            # template containing html for instructions
+            #'instructions': 'mturk/mt_segment_material_inst_content.html',
+            'instructions': 'mturk/mt_segment_material_inst_content_vqa.html',
+
+            'task': request.GET.get('task', 'no task specified'),
+
+        }
+
+    return render(request, 'mturk/mt_segment_material.html', context)
+
 
 def browser_check(request):
     """ Only allow firefox and chrome, and no mobile """

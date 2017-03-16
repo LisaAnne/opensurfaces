@@ -6,6 +6,7 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     url(r'^$', 'segmentation.views.demo', name='demo'),
+    url(r'^vqa/$', 'segmentation.views.vqa', name='vqa'),
 
     # Examples:
     # url(r'^$', 'example_project.views.home', name='home'),
